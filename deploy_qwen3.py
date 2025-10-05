@@ -30,7 +30,8 @@ class DeploymentConfig:
 
     model: str = "Qwen/Qwen3-0.6B"
     tensor_parallel_size: int = 1
-    gpu_memory_utilization: float = 0.9
+    gpu_memory_utilization: float = 0.75
+    max_num_seqs: Optional[int] = 16
     enforce_eager: bool = False
     dtype: Optional[str] = None
     trust_remote_code: bool = True
@@ -141,6 +142,8 @@ def build_llm(config: DeploymentConfig) -> "LLM":
         "enforce_eager": config.enforce_eager,
         "disable_custom_all_reduce": config.disable_custom_all_reduce,
     }
+    if config.max_num_seqs is not None:
+        init_kwargs["max_num_seqs"] = config.max_num_seqs
     if config.dtype:
         init_kwargs["dtype"] = config.dtype
     if config.max_model_len:
@@ -251,7 +254,21 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
     parser.add_argument("--temperature", type=float, default=0.7, help="Sampling temperature.")
     parser.add_argument("--top-p", type=float, default=0.95, help="Nucleus sampling top-p value.")
     parser.add_argument("--tensor-parallel", type=int, default=1, help="Tensor parallel size.")
-    parser.add_argument("--gpu-memory-utilization", type=float, default=0.9, help="Fraction of GPU memory to allow.")
+    parser.add_argument(
+        "--gpu-memory-utilization",
+        type=float,
+        default=0.75,
+        help="Fraction of GPU memory that vLLM may allocate for KV cache and weights.",
+    )
+    parser.add_argument(
+        "--max-num-seqs",
+        type=int,
+        default=16,
+        help=(
+            "Upper bound on the number of concurrent sequences for KV cache allocation."
+            " Reduce this if CUDA OOM occurs during warmup."
+        ),
+    )
     parser.add_argument("--dtype", type=str, default=None, help="Computation dtype, e.g. float16/bfloat16.")
     parser.add_argument("--max-model-len", type=int, default=None, help="Override model context length.")
     parser.add_argument("--speculative-model", type=str, default=None, help="Optional speculative decoding model ID.")
@@ -273,6 +290,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     config = DeploymentConfig(
         tensor_parallel_size=args.tensor_parallel,
         gpu_memory_utilization=args.gpu_memory_utilization,
+        max_num_seqs=args.max_num_seqs,
         dtype=args.dtype,
         max_model_len=args.max_model_len,
         speculative_model=args.speculative_model,
