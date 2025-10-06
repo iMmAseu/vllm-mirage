@@ -11,6 +11,10 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import TYPE_CHECKING, Callable, Dict, Iterable, List, Optional, Sequence
 
+# Ensure module-level singletons survive both ``python deploy_qwen3.py`` and
+# ``import deploy_qwen3`` code paths.
+sys.modules.setdefault("deploy_qwen3", sys.modules[__name__])
+
 if TYPE_CHECKING:  # pragma: no cover - typing helpers only
     import torch
 
@@ -280,12 +284,24 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
     parser.add_argument("--enforce-eager", action="store_true", help="Force eager execution mode.")
     parser.add_argument("--log-level", type=str, choices=["info", "debug"], default="info")
     parser.add_argument("--dry-run", action="store_true", help="Load the model and apply modifiers without generating.")
+    parser.add_argument(
+        "--enable-operator-templates",
+        action="store_true",
+        help="Register placeholder operator replacements from qwen3_operator_templates.",
+    )
     return parser.parse_args(argv)
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
     args = parse_args(argv)
     logger = configure_logging(args.log_level == "debug")
+
+    if args.enable_operator_templates:
+        try:
+            import qwen3_operator_templates  # noqa: F401  # pylint: disable=unused-import
+        except ImportError as exc:  # pragma: no cover - runtime failure path
+            logger.error("Failed to import operator templates: %s", exc)
+            return 1
 
     config = DeploymentConfig(
         tensor_parallel_size=args.tensor_parallel,
