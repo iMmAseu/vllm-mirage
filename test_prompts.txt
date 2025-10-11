@@ -1,0 +1,141 @@
+# Test Prompts for Mirage Performance Benchmark
+# Each line is a separate prompt
+
+# Short prompts (1-10 tokens)
+Hello world
+What is AI?
+Tell me a joke
+How are you?
+Good morning
+Python code
+Machine learning
+Deep learning
+Neural networks
+Transformer model
+
+# Medium prompts (10-30 tokens)
+Explain the concept of artificial intelligence in simple terms
+Write a short poem about the beauty of nature
+What are the main differences between Python and JavaScript?
+How does a neural network learn from data?
+Describe the process of training a machine learning model
+What is the purpose of the attention mechanism in transformers?
+Can you explain what makes large language models so powerful?
+How do computers understand and process natural language?
+What are the key components of a deep learning system?
+Explain the concept of backpropagation in neural networks
+
+# Longer prompts (30-60 tokens)
+Write a detailed explanation of how the transformer architecture revolutionized natural language processing and why it became the foundation for modern large language models like GPT and BERT
+Describe the complete process of training a deep neural network from scratch, including data preprocessing, model architecture selection, loss function design, optimization algorithms, and evaluation metrics
+Explain the fundamental differences between supervised learning, unsupervised learning, and reinforcement learning, providing concrete examples of when each approach would be most appropriate
+What are the main challenges in scaling neural networks to billions of parameters, and how do techniques like model parallelism and gradient checkpointing help address these challenges?
+Discuss the importance of attention mechanisms in modern NLP models and explain how self-attention differs from traditional attention and why it's more effective for language understanding
+
+# Code generation prompts
+Write a Python function to calculate fibonacci numbers
+Create a sorting algorithm in Python
+Implement a binary search tree
+Write a function to reverse a string
+Code a simple calculator in Python
+Create a class for a linked list
+Write a regex pattern matcher
+Implement quicksort algorithm
+Create a hash table implementation
+Write a function to detect palindromes
+
+# Question answering prompts
+What is the capital of France?
+Who invented the telephone?
+When did World War 2 end?
+What is the speed of light?
+How many planets are in our solar system?
+What is the largest ocean on Earth?
+Who wrote Romeo and Juliet?
+What is the boiling point of water?
+When was the first computer invented?
+What is the chemical symbol for gold?
+
+# Creative writing prompts
+Write a story about a robot learning to feel emotions
+Describe a futuristic city in the year 3000
+Create a dialogue between two AI systems discussing consciousness
+Write a haiku about artificial intelligence
+Compose a short sci-fi story about time travel
+Describe an alien civilization's first contact with Earth
+Write a poem about the relationship between humans and technology
+Create a fantasy tale about a magical neural network
+Describe a world where AI and humans coexist peacefully
+Write a mystery story involving a sentient computer program
+
+# Technical explanation prompts
+How does gradient descent optimization work?
+Explain the vanishing gradient problem
+What is batch normalization and why is it useful?
+How do convolutional neural networks process images?
+What is the difference between RNN and LSTM?
+Explain the concept of dropout regularization
+How does the Adam optimizer improve training?
+What are residual connections in deep networks?
+Explain the concept of transfer learning
+How does attention mechanism improve sequence modeling?
+
+# Reasoning and logic prompts
+If all roses are flowers and some flowers fade quickly, what can we conclude?
+Solve this riddle: What has keys but no locks, space but no room?
+A train leaves station A at 60 mph, another leaves station B at 80 mph
+If 5 machines make 5 widgets in 5 minutes, how long for 100 machines to make 100 widgets?
+What comes next in the sequence: 2, 4, 8, 16, 32?
+If today is Monday, what day was it 100 days ago?
+Three friends split a bill of $45 equally, how much does each pay?
+If a book has 300 pages and you read 20 pages per day, how many days to finish?
+What is the probability of flipping heads twice in a row?
+If x + 5 = 12, what is the value of 2x?
+
+# Multilingual prompts (testing Unicode handling)
+Bonjour, comment allez-vous?
+¿Cómo estás hoy?
+Wie geht es dir?
+こんにちは、元気ですか？
+你好，最近怎么样？
+Привет, как дела?
+Ciao, come stai?
+안녕하세요, 어떻게 지내세요?
+Olá, como você está?
+Hej, hur mår du?
+
+# Edge cases and special prompts
+""
+The quick brown fox jumps over the lazy dog
+1234567890
+!@#$%^&*()_+-=[]{}|;:,.<>?
+ALLCAPSSENTENCEWITHOUTSPACES
+a
+This is a sentence with    multiple    spaces
+This sentence ends with multiple punctuation marks!!!???
+Mixed123Numbers456And789Text
+CamelCaseWordsWithoutSpaces
+
+# Instruction following prompts
+List the first 10 prime numbers
+Count from 1 to 20
+Reverse the alphabet
+Name 5 programming languages
+List 3 benefits of exercise
+Describe the water cycle in 3 steps
+Explain photosynthesis briefly
+Define machine learning
+What are the 4 seasons?
+Name the 7 continents
+
+# Complex reasoning prompts
+If a bat and ball cost $1.10 and the bat costs $1 more than the ball, what does the ball cost?
+You have a 3-gallon jug and a 5-gallon jug, how do you measure exactly 4 gallons?
+Three switches control three light bulbs in another room, how do you determine which switch controls which bulb?
+A farmer has 17 sheep and all but 9 die, how many are left?
+How can you make the number 24 using the numbers 8, 8, 3, and 3?
+If you overtake the person in second place in a race, what place are you in?
+A doctor gives you 3 pills and tells you to take one every 30 minutes, how long do they last?
+How many times does the digit 9 appear between 1 and 100?
+If 2 painters can paint 2 rooms in 2 hours, how long for 8 painters to paint 8 rooms?
+What weighs more, a pound of feathers or a pound of bricks?

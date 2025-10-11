@@ -1,0 +1,31 @@
+# Virtual environments
+vllm-mirage/
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test outputs (generated files)
+benchmark_report.txt
+benchmark_results.json
+detailed_report.txt
+test_output.txt
+*.log
+
+# We'll exclude the entire vllm and mirage repos
+# and provide installation instructions instead
+vllm/
+mirage/
